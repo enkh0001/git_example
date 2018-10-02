@@ -4,7 +4,10 @@
 #import necessary libraries
 
 library(data.table)
-#request url and save response to variable titanic
-titanic<-fread("http://web.stanford.edu/class/archive/cs/cs109/cs109.1166/stuff/titanic.csv")
+library("rjson")
+json_data <- fromJSON(paste(readLines('/data/config.json'), collapse=""))
+url<json_data["url"]
+name<-json_data["name"]
+path<-json_data["path"]
 # write output to table and print first 10 rows
-write.csv(titanic, file = "/data/out/tables/titanic.csv", row.names = FALSE)
+write.csv(titanic, file = "/data/out/tables/name", row.names = FALSE)
